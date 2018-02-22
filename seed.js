@@ -1,53 +1,59 @@
 var data = require('./seed_data.js');
 var mongoose = require('mongoose');
+var Stories = require('./db/models/story.js')
 
 mongoose.connect('mongodb://localhost/photoGallery');
 
 var seedDatabase = function(data) {
-
-    data.businesses.forEach((story) => {
+    // console.log(data.mockupData)
+    data.mockupData.businesses.forEach((story) => {
+        //console.log(story)
         var business = {
-            business_id: story.businesses.business_id,
-            business_name: story.businesses.business_name,
+            business_id: story.id,
+            business_name: story.name,
         };
+
+        Stories.insertOneBusiness(business, (err) => {
+            if(err) { return (err)};
+        });
     });
 
-    Stories.insertOne(business, (err) => {
-        if(err) { return (err)};
-    });
-
-    data.users.forEach((story) => {
+    data.mockupData.users.forEach((story) => {
+        //console.log(story)
         var userData = {
-            user_id: story.users.user_id,
-            user_name: story.users.user_name,
-            profileImg: story.users.profileImg,
-            user_friends: story.users.user_friends,
-            user_reviews: story.users.user_reviews,
-            user_elite_status: story.users.user_elite_status,
+            user_id: story.id,
+            user_name: story.name,
+            profileImg: story.profileImg,
+            user_friends: story.friends,
+            user_reviews: story.reviews,
+            user_elite_status: story.elite,
         };  
+
+        Stories.insertOneUsers(userData, (err) => {
+            if(err) { return (err)};
+        });
     });
 
-    Stories.insertOne(business, (err) => {
-        if(err) { return (err)};
-    });
-
-    data.graphics.forEach((story) => {
+    data.mockupData.graphics.forEach((story) => {
+        //console.log(story)
         var graphics = {
-            pic_up: story.graphics.pic_ud,
-            business_id: story.graphics.business_id,
-            username_id: story.graphics.user_id,
-            date: story.graphics.date,
-            graphic_link: story.graphics.graphic_link,
-            caption: story.graphics.caption,
-            helpful: story.graphics.helpful,
-            noHelpful: story.graphics.noHelpful,
+            pic_id: story.id,
+            business_id: story.business_id,
+            username_id: story.username_id,
+            date: story.date,
+            graphic_link_low: story.graphic_link_low,
+            graphic_link_high: story.graphic_link_high,
+            caption: story.caption,
+            helpful: story.helpful,
+            noHelpful: story.noHelpful,
         };
+
+        Stories.insertOneGraphics(graphics, (err) => {
+            if(err) { return (err)};
+        });
     });
 
-    Stories.insertOne(graphics, (err) => {
-        if(err) { return (err)};
-    });
-
+    return console.log('Seeded')
 };
 
 seedDatabase(data);

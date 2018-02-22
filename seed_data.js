@@ -88,6 +88,7 @@ let randomUnHelpfulGenerator = () => {
 let graphics = [];
 
 let mockGraphicLink =  "https://picsum.photos/250/250?image="
+let mockGraphicLinkHigh= "https://picsum.photos/700/650?image="
 
 for(let l = 0; l < 999; l++) {
   graphics.push({
@@ -95,7 +96,8 @@ for(let l = 0; l < 999; l++) {
     business_id: randomrestaurant_id(), 
     username_id: randomuser_id(), 
     date: null,
-    graphic_link: mockGraphicLink + l,
+    graphic_link_low: mockGraphicLink + l,
+    graphic_link_high: mockGraphicLinkHigh + l,
     caption: captionGenerator(), /*?*/
     helpful: randomHelpfulGenerator(),
     noHelpful: randomUnHelpfulGenerator()
@@ -104,10 +106,10 @@ for(let l = 0; l < 999; l++) {
 
 mockupData.graphics = graphics;
 
-// mockupData.businesses /*?*/
-// mockupData.users /*?*/
-// mockupData.graphics /*?*/
+//mockupData.businesses/*?*/
+//mockupData.users /*?*/ 
+//mockupData.graphics /*?*/
 
-exports.businesses = mockupData.businesses;
-exports.users = mockupData.users;
-exports.graphics = mockupData.graphics;
+exports.mockupData = mockupData;
+// exports.users = mockupData.users;
+// exports.graphics = mockupData.graphics;

@@ -1,17 +1,33 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
+  "name": "photoGallery",
+  "version": "1.0.0",
+  "description": "photoGallery for Yelp",
   "author": "",
   "license": "",
   "engines": {
     "node": ">=6.13.0"
   },
   "scripts": {
+    "test": "jest",
+    "start": "nodemon server/index.js",
+    "dev-react": "webpack -d --watch",
+    "seed-database": "node seed.js"
   },
   "dependencies": {
+    "babel-core": "^6.26.0",
+    "body-parser": "^1.18.2",
+    "eslint-config-airbnb": "^16.1.0",
+    "mongoose": "^5.0.6",
+    "nodemon": "^1.15.1"
   },
   "devDependencies": {
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
+    "babel-jest": "^22.4.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "^4.18.1",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "jest": "^22.4.0",
+    "react-test-renderer": "^16.2.0",
+    "webpack": "^3.11.0"
   }
 }
