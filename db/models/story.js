@@ -1,11 +1,13 @@
 const mongoose = require('mongoose');
 
-let businesses = mongoose.Schema({
+mongoose.Promise = global.Promise;
+
+const businesses = mongoose.Schema({
   business_id: Number,
   business_name: String,
 });
 
-let users = mongoose.Schema({
+const users = mongoose.Schema({
   user_id: Number,
   user_name: String,
   profileImg: String,
@@ -14,7 +16,7 @@ let users = mongoose.Schema({
   user_elite_status: Boolean,
 });
 
-let graphics = mongoose.Schema({
+const graphics = mongoose.Schema({
   pic_id: Number,
   business_id: Number,
   username_id: Number,
@@ -26,38 +28,44 @@ let graphics = mongoose.Schema({
   noHelpful: Number,
 });
 
-let Businesses = mongoose.model('Businesses', businesses);
-let Users = mongoose.model('Users', users);
-let Graphics = mongoose.model('Graphics', graphics);
+const Businesses = mongoose.model('Businesses', businesses);
+const Users = mongoose.model('Users', users);
+const Graphics = mongoose.model('Graphics', graphics);
 
 
-//insert Seed Data
-let insertOneBusiness = (story, callback) => {
-  Businesses.create(story, callback)
-}
+// insert Seed Data
+const insertOneBusiness = (story, callback) => {
+  Businesses.create(story, callback);
+};
 
-let insertOneUsers = (story, callback) => {
-  Users.create(story, callback)
-}
+const insertOneUsers = (story, callback) => {
+  Users.create(story, callback);
+};
 
-let insertOneGraphics = (story, callback) => {
-  Graphics.create(story, callback)
-}
+const insertOneGraphics = (story, callback) => {
+  Graphics.create(story, callback);
+};
 
-//retrieve photos
+// retrieve photos
 
-let retrieve = (callback) => {
-  Graphics
-  .find({})
-  .limit(3)
-  .exec((err, data) => {
-    if (err) throw err;
-    callback(data);
-  });
-}
+// const retrieveGraphics = (callback) => {
+//   Graphics
+//     .find({})
+//     .limit(3)
+//     .exec((err, data) => {
+//       if (err) throw err;
+//       callback(data);
+//     });
+// };
+
+const retrieveGraphics = () => Graphics.find({}).limit(3).exec();
+const retrieveUsers = userId => Users.find({ user_id: userId }).exec();
+const retrieveBusiness = businessId => Businesses.find({ business_id: businessId }).exec();
 
 exports.insertOneBusiness = insertOneBusiness;
 exports.insertOneUsers = insertOneUsers;
 exports.insertOneGraphics = insertOneGraphics;
 
-exports.retrieve = retrieve;
+exports.retrieveGraphics = retrieveGraphics;
+exports.retrieveUsers = retrieveUsers;
+exports.retrieveBusiness = retrieveBusiness;

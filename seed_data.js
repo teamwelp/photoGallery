@@ -90,7 +90,7 @@ let graphics = [];
 let mockGraphicLink =  "https://picsum.photos/250/250?image="
 let mockGraphicLinkHigh= "https://picsum.photos/700/650?image="
 
-for(let l = 0; l < 999; l++) {
+for (let l = 0; l < 999; l++) {
   graphics.push({
     id: l,
     business_id: randomrestaurant_id(), 
@@ -98,7 +98,7 @@ for(let l = 0; l < 999; l++) {
     date: null,
     graphic_link_low: mockGraphicLink + l,
     graphic_link_high: mockGraphicLinkHigh + l,
-    caption: captionGenerator(), /*?*/
+    caption: captionGenerator(),
     helpful: randomHelpfulGenerator(),
     noHelpful: randomUnHelpfulGenerator()
   })
@@ -106,9 +106,7 @@ for(let l = 0; l < 999; l++) {
 
 mockupData.graphics = graphics;
 
-//mockupData.businesses/*?*/
-//mockupData.users /*?*/ 
-//mockupData.graphics /*?*/
+// console.log(mockupData.graphics) /*?*/
 
 exports.mockupData = mockupData;
 // exports.users = mockupData.users;
