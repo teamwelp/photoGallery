@@ -23,6 +23,21 @@ class App extends React.Component {
     this.fetch();
   }
 
+  limitCaptionLength(arr) {
+    let changedString = arr;
+    arr.forEach((photo) => {
+      if(photo.caption.length > 39) {
+        photo.shortCaption = photo.caption.slice(0, 35) + '...';
+      } else {
+        photo.shortCaption = photo.caption;
+      }
+    });
+
+    this.setState({
+      list: changedString
+    })
+  }
+
   fetch() {
     $.ajax({
         url: '/exampleBusiness',
@@ -31,6 +46,7 @@ class App extends React.Component {
         success: (received) => {
         console.log('fetched')
           this.fetchUserInfo(received);
+          this.limitCaptionLength(received);
           this.setState({
             list: received
           })

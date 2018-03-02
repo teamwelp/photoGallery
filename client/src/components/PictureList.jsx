@@ -14,7 +14,11 @@ const PictureList = (props) => (
               <img key={props.users[0].profileImg} src = {props.users[0].profileImg} />
             </div>
             <div className="detail">
-              <p>{props.list[0].caption}</p>
+              <a className="description" href="newRoute.com">{props.list[0].shortCaption}</a>
+              <span className="author">
+                &nbsp; by &nbsp;
+                <a className="username" href="newRoute.com">{props.users[0].user_name}</a>
+              </span>
             </div>
           </div>
         </div>
@@ -27,13 +31,31 @@ const PictureList = (props) => (
               <img key={props.users[1].profileImg} src = {props.users[1].profileImg} />
             </div>
             <div className="detail">
-              <p>{props.list[1].caption}</p>
+              <a className="description" href="newRoute.com">{props.list[1].shortCaption}</a>
+              <span className="author">
+                &nbsp; by &nbsp;
+                <a className="username" href="newRoute.com">{props.users[1].user_name}</a>
+              </span>
             </div>
           </div>
         </div>
       </div>
       <div className="photo image-3">
-        <img key={props.list[2].pic_id} src={props.list[2].graphic_link_low} />
+        <a href="">
+          <img key={props.list[2].pic_id+1} className="photoBox" src={props.list[2].graphic_link_low} />
+        </a>  
+        {/* Delete top line later after enough image has been uploaded */}
+        {props.list.map((pic) => 
+          <a key={pic.pic_id+'pic tag'} href="">
+            <img key={pic.pic_id+'pic'} className="photoBox" src={pic.graphic_link_low} />
+          </a> 
+        )}
+        <a className="onTopOfBox" href="showallimages">
+          <span className="iconAdjust">
+            <img className="icon" src="../images/imagetile.svg" />
+          </span>
+          See all &nbsp;{props.list.length}
+        </a>
       </div>
     </div>
   </div>
