@@ -10,8 +10,8 @@ class PictureModal extends React.Component {
 						<div className="modal-content" key={pic.pic_id+'modal tag'}>
 							<div className={"mySlides " + this.props.listAndUsers.indexOf(pic)}>
 								<div className="numbertext">{this.props.listAndUsers.indexOf(pic) + 1} / {this.props.listAndUsers.length}</div>
-								<div>
-									<img src={pic.graphic_link_high} />
+								<div className="imgTemplate">
+									<img className="imgModal" src={pic.graphic_link_high} />
 									<a className="prev" onClick={()=> this.props.plusSlide(-1)}>&#10094;</a>
 								</div>
 							</div>
@@ -39,7 +39,7 @@ class PictureModal extends React.Component {
 								</div>
 								<div className={"modal-pic-info"}>
 									<div className={"modal-pic-caption"}>
-										<div>{pic.caption}</div>
+										<div className={"modal-caption-text"}>{pic.caption}</div>
 									</div>
 									<div className={"date-style"}>
 										<span className={"time-stamp"}>January 8, 2018</span>

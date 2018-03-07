@@ -237,6 +237,22 @@ img {
 	margin: 0 auto;
 }
 
+.imgTemplate {
+	border-radius: 6px 6px 6px 6px;
+	background: black;
+	overflow: hidden;
+	/* height: 100%; */
+	height: 100%;
+	max-width: 70%;
+	text-align: center;
+	font-size: 0;
+}
+
+.imgModal {
+	max-inline-size: inherit;
+	max-width: 100%;
+}
+
   /* Modal Content */
 .modal-content {
 	position: relative;
@@ -255,8 +271,7 @@ img {
 	height: 100%;
 	box-sizing: border-box;
 	border-radius: 0 6px 6px 0;
-	/* width: 200px; */
-	max-width: 300px;
+	max-width: 30%;
 	padding: 12px;
 	background: white;
 }
@@ -304,6 +319,10 @@ ol, ul {
 	color:#0073bb;;
 }
 
+.display-user-name:hover {
+	text-decoration: underline;
+}
+
 .friend-count {
 	line-height: 1;
 	display: inline-block;
@@ -324,6 +343,11 @@ ol, ul {
 
 .modal-pic-caption {
 	margin-top: 6px;
+}
+
+.modal-caption-text {
+	font-size: 14px;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .date-style {
@@ -386,6 +410,7 @@ ol, ul {
   /* Hide the slides by default */
   .mySlides {
 	display: none;
+	background-color: rgba(0,0,0,0.7);
   }
   
   /* Next & previous buttons */

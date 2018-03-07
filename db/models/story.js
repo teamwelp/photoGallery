@@ -58,7 +58,7 @@ const insertOneGraphics = (story, callback) => {
 //     });
 // };
 
-const retrieveGraphics = () => Graphics.find({}).limit(3).exec();
+const retrieveGraphics = businessId => Graphics.find({ business_id: businessId }).exec();
 const retrieveUsers = userId => Users.find({ user_id: userId }).exec();
 const retrieveBusiness = businessId => Businesses.find({ business_id: businessId }).exec();
 

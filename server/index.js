@@ -8,10 +8,10 @@ var app = express();
 mongoose.connect('mongodb://localhost/photoGallery');
 
 app.use(bodyParser.json());
-app.use(express.static(__dirname + '/../client/dist'));
+app.use('/biz/:bizId', express.static(__dirname + '/../client/dist'));
 
-app.get('/exampleBusiness', (req, res) => {
-  return db.retrieveGraphics().then((data) => {
+app.get('/id/:bizId', (req, res) => {
+  return db.retrieveGraphics(req.params.bizId).then((data) => {
     res.send(data)
   });
 });

@@ -15,12 +15,15 @@ class App extends React.Component {
         {pic_id: 2, graphic_link_low: ''},
         {pic_id: 3, graphic_link_low: ''},
       ],
+      seeFourPhotos: [
+
+      ],
       users: [
         {profileImg: ''},
         {profileImg: ''},
       ],
       listAndUsers: [
-      ]
+      ],
     }
   }
 
@@ -44,15 +47,44 @@ class App extends React.Component {
     })
   }
 
+  seeFourPhotos(arr) {
+    let newArr = [];
+    if(arr.length >= 6) {
+      for(let i = 2; i < 6; i++) {
+        newArr.push(arr[i]);
+      }
+
+      this.setState({
+        seeFourPhotos: newArr
+      })
+    } else {
+      for(let i = 2; i < arr.length; i++) {
+        newArr.push(arr[i]);
+      }
+      let left = 4 - newArr.length;
+      for(let j = 0; j < left; j++) {
+        newArr.push(arr[0])
+      }
+
+      this.setState({
+        seeFourPhotos: newArr
+      })
+    }
+  }
+
   fetch() {
+    let url = document.location.href.split('/');
+    url = url[url.length - 2];
+    let getId = '/id/' + url;
     $.ajax({
-        url: '/exampleBusiness',
+        url: getId,
         method: 'GET',
         contentType: 'application/json',
         success: (received) => {
         console.log('fetched')
           this.fetchUserInfo(received);
           this.limitCaptionLength(received);
+          this.seeFourPhotos(received);
           this.setState({
             list: received
           })
@@ -144,6 +176,7 @@ class App extends React.Component {
           <PictureList
             list = {this.state.list}
             users = {this.state.users}
+            seeFourPhotos = {this.state.seeFourPhotos}
             handleModal = {this.handleModal.bind(this)}
           />
           <PictureModal 
