@@ -2,25 +2,31 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import PictureList from './components/PictureList.jsx';
+import PictureModal from './components/PictureModal.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        list: [
-            {pic_id: 1, graphic_link_low: ''},
-            {pic_id: 2, graphic_link_low: ''},
-            {pic_id: 3, graphic_link_low: ''},
-        ],
-        users: [
-            {profileImg: ''},
-            {profileImg: ''},
-        ],
+      display: 'none',
+      slideIndex: -1,
+      list: [
+        {pic_id: 1, graphic_link_low: ''},
+        {pic_id: 2, graphic_link_low: ''},
+        {pic_id: 3, graphic_link_low: ''},
+      ],
+      users: [
+        {profileImg: ''},
+        {profileImg: ''},
+      ],
+      listAndUsers: [
+      ]
     }
   }
 
   componentDidMount() {
     this.fetch();
+    this.clearImgModal();
   }
 
   limitCaptionLength(arr) {
@@ -60,37 +66,93 @@ class App extends React.Component {
   fetchUserInfo(list) {
     let userList = [];
     list.forEach((user) => {
-        userList.push(user.username_id)
+      userList.push(user.username_id)
     });
 
-    // console.log(this.state)
-    // console.log(userList);
     $.ajax({
         url: '/exampleBusiness',
         type: 'POST',
         contentType: 'application/json', 
         data: JSON.stringify(userList),
         success: function(data) {
+          this.mergeTwoInfo(data)
           this.setState({
             users: data
           })
         }.bind(this),
         error: function(err) {
-            console.log('Failed to Send', err)
+          console.log('Failed to Send', err)
         }
     });
   }
 
+  mergeTwoInfo(usrArr) {
+    let arr = [];
+    this.state.list.forEach((itm, i) => {
+      arr.push(Object.assign({}, itm, usrArr[i]));
+    });
+    this.setState({
+      listAndUsers: arr
+    })
+  }
+
+  handleModal(obj) {
+    this.clearImgModal();
+    if(obj === 1) {
+      $('.1').css({'display':'block'});
+      this.setState({
+        display: 'block',
+        slideIndex: obj,
+      })
+    } else {
+      $('.0').css({'display':'block'});
+      this.setState({
+        display: 'block',
+        slideIndex: obj,
+      })
+    }
+  }
+
+  clearImgModal(){
+    for(let i = 0; i < this.state.list.length; i++) {
+      $('.'+ i).css({'display': 'none'});
+    }
+  }
+
+  closeModal() {
+    this.clearImgModal();
+    this.setState({
+      display:'none',
+    })
+  }
+
+  plusSlide(n) {
+		if(this.state.slideIndex+n >= 0 && this.state.slideIndex+n < this.state.list.length) {
+      this.clearImgModal();
+      $('.' + (this.state.slideIndex + n)).css({'display':'block'});
+			this.setState({
+        slideIndex: this.state.slideIndex + n,
+			})
+		}
+  }
 
   render() {
     return (
-      <div className="show-case-main">
-        {/* <h3>Welcome to Photo Gallery</h3> */}
-        <div className="show-map"></div>
-        <PictureList
-          list = {this.state.list}
-          users = {this.state.users}
-        />
+      <div>
+        <div className="show-case-main">
+          <div className="show-map"></div>
+          <PictureList
+            list = {this.state.list}
+            users = {this.state.users}
+            handleModal = {this.handleModal.bind(this)}
+          />
+          <PictureModal 
+            listAndUsers={this.state.listAndUsers}
+            display={this.state.display}
+            closeModal = {this.closeModal.bind(this)}
+            plusSlide = {this.plusSlide.bind(this)}
+          />
+        </div>
       </div>
     )
   }
