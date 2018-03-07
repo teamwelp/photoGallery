@@ -16,7 +16,7 @@ app.get('/id/:bizId', (req, res) => {
   });
 });
 
-app.post('/exampleBusiness', (req, res) => {
+app.post('/id/:bizId', (req, res) => {
   let arr = req.body.map((userid) => {
     return db.retrieveUsers(userid);
   });
@@ -31,6 +31,6 @@ app.post('/exampleBusiness', (req, res) => {
 
 });
 
-app.listen(8000, function() {
-  console.log('listening on port 8000');
+app.listen(9004, function() {
+  console.log('listening on port 9004');
 });

@@ -96,13 +96,17 @@ class App extends React.Component {
   }
 
   fetchUserInfo(list) {
+    let url = document.location.href.split('/');
+    url = url[url.length - 2];
+    let getId = '/id/' + url;
+
     let userList = [];
     list.forEach((user) => {
       userList.push(user.username_id)
     });
 
     $.ajax({
-        url: '/exampleBusiness',
+        url: getId,
         type: 'POST',
         contentType: 'application/json', 
         data: JSON.stringify(userList),
@@ -191,4 +195,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('photoGallery'));
