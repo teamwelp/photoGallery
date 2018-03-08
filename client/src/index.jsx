@@ -173,7 +173,6 @@ class App extends React.Component {
     return (
       <div>
         <div className="show-case-main">
-          <div className="show-map"></div>
           <PictureList
             list = {this.state.list}
             users = {this.state.users}
