@@ -13,7 +13,7 @@ class FourPictures extends React.Component {
 				)}
 				<a className="onTopOfBox inactiveLink" href="">
 					<span className="iconAdjust">
-						<img className="icon" src= {absoluteUrl + `/dist/images/imagetile.svg`} />
+						<img className="icon" src= {absoluteUrl + `/images/imagetile.svg`} />
 					</span>
 					See all &nbsp;{this.props.list.length}
 				</a>

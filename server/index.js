@@ -9,8 +9,8 @@ var app = express();
 mongoose.connect('mongodb://localhost/photoGallery');
 
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '/../client/')));
-app.use('/biz/:bizId', express.static(__dirname + '/../client/dist'));
+app.use(express.static(path.join(__dirname, '/../public/')));
+app.use('/biz/:bizId', express.static(__dirname + '/../public'));
 
 app.get('/id/:bizId', (req, res) => {
   return db.retrieveGraphics(req.params.bizId).then((data) => {
