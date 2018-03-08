@@ -2,12 +2,14 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var db = require('../db/models/story.js');
+var path = require('path')
 
 var app = express();
 
 mongoose.connect('mongodb://localhost/photoGallery');
 
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, '/../public')));
 app.use('/biz/:bizId', express.static(__dirname + '/../client/dist'));
 
 app.get('/id/:bizId', (req, res) => {
