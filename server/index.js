@@ -3,11 +3,13 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var db = require('../db/models/story.js');
 var path = require('path')
+var cors = require('cors')
 
 var app = express();
 
 mongoose.connect('mongodb://localhost/photoGallery');
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '/../public/')));
 app.use('/biz/:bizId', express.static(__dirname + '/../public'));
