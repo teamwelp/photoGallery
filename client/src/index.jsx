@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import PictureList from './components/PictureList.jsx';
 import PictureModal from './components/PictureModal.jsx';
+import absoluteUrl from '../../url.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -73,11 +74,9 @@ class App extends React.Component {
   }
 
   fetch() {
-    let url = document.location.href.split('/');
-    url = url[url.length - 2];
-    let getId = '/id/' + url;
+    let urlId = window.location.href.slice(window.location.href.search('biz') + 4).replace('/', '');
     $.ajax({
-        url: getId,
+        url: absoluteUrl + '/id/' + urlId,
         method: 'GET',
         contentType: 'application/json',
         success: (received) => {
@@ -96,17 +95,15 @@ class App extends React.Component {
   }
 
   fetchUserInfo(list) {
-    let url = document.location.href.split('/');
-    url = url[url.length - 2];
-    let getId = '/id/' + url;
-
+    let urlId = window.location.href.slice(window.location.href.search('biz') + 4).replace('/', '');
     let userList = [];
+    
     list.forEach((user) => {
       userList.push(user.username_id)
     });
 
     $.ajax({
-        url: getId,
+        url: absoluteUrl + '/id/' + urlId,
         type: 'POST',
         contentType: 'application/json', 
         data: JSON.stringify(userList),
