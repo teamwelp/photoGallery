@@ -6,6 +6,7 @@ class PictureModal extends React.Component {
 		return (
 			<div id="myModal" className="modal" style={{display:this.props.display}}>
 				<div className="modal-box">
+					<div className="light-box">
 					{this.props.listAndUsers.map((pic) => 
 						<div className="modal-content" key={pic.pic_id+'modal tag'}>
 							<div className={"mySlides " + this.props.listAndUsers.indexOf(pic)}>
@@ -29,10 +30,16 @@ class PictureModal extends React.Component {
 										</ul>
 										<ul>
 											<li className={"friend-count"}>
-												f: <b>{pic.user_friends}</b>
+												<i className={"people material-icons"}>people</i>
+												<div className={"boldInfo"}>
+													<b>{pic.user_friends}</b>
+												</div>
 											</li>
 											<li className={"user-reviews"}>
-												r: <b>{pic.user_reviews}</b>
+												<i className={"people material-icons"}>stars</i>
+												<div className={"boldInfo"}>
+													<b>{pic.user_reviews}</b>
+												</div>
 											</li>
 										</ul>
 									</div>
@@ -50,10 +57,10 @@ class PictureModal extends React.Component {
 										</p>
 										<ul>
 											<li className={"vote-btn"}>
-												<button className={"clickBtn"}>Helpful: {pic.helpful}</button>
+											<button className={"clickBtn"}><i className={"fas fa-arrow-up"}></i> Helpful {pic.helpful}</button>
 											</li>
 											<li className={"vote-btn"}>
-												<button className={"clickBtn"}>Not Helpful: {pic.noHelpful}</button>
+												<button className={"clickBtn"}><i className={"fas fa-arrow-down"}></i> Not Helpful {pic.noHelpful}</button>
 											</li>
 										</ul>
 									</div>
@@ -62,6 +69,7 @@ class PictureModal extends React.Component {
 							<span className="close cursor" onClick={()=>this.props.closeModal()}>Close &times;</span>
 						</div>	
 					)}	
+					</div>
 				</div>	
 			</div>
 		)
