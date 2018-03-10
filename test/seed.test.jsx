@@ -6,7 +6,7 @@ beforeAll(() => {
 });
 
 afterAll(() => {
-  mongoose.connection.dropDatabase();
+  // mongoose.connection.dropDatabase();
 	mongoose.disconnect();
 });
 

@@ -8,16 +8,16 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
+    "test": "jest --forceExit",
+    "test:watch": "jest --watch --forceExit",
+    "test:coverage": "jest --coverage  --forceExit",
     "build": "webpack -d --watch",
     "seed": "node seed.js",
     "start": "nodemon server/index.js"
   },
   "jest": {
     "setupFiles": [
-      "./src/jest-setup.js"
+      "./test/jest-setup.js"
     ],
     "snapshotSerializers": [
       "enzyme-to-json/serializer"

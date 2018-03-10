@@ -22,18 +22,4 @@ var config = {
   }
 };
 
-// // Existing Code ....
-// var config = {
-//     // Existing Code ....
-//     module : {
-//       loaders : [
-//         {
-//           test : /\.jsx?/,
-//           include : APP_DIR,
-//           loader : 'babel-loader'
-//         }
-//       ]
-//     }
-//   }
-
 module.exports = config;
