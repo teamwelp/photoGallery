@@ -10,7 +10,7 @@
   "scripts": {
     "test": "jest --forceExit",
     "test:watch": "jest --watch --forceExit",
-    "test:coverage": "jest --coverage  --forceExit",
+    "test:coverage": "jest --coverage",
     "build": "webpack -d --watch",
     "seed": "node seed.js",
     "start": "nodemon server/index.js"
